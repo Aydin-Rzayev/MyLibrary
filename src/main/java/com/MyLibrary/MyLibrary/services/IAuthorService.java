@@ -9,8 +9,8 @@ public interface IAuthorService {
     AuthorModelDTO getAuthorById(Integer id);
     AuthorModelDTO getAuthorByName(String name);
     List<AuthorModelDTO> getAllAuthors();
-    AuthorModelDTO deleteAuthor(AuthorModelIU author);
+    Boolean deleteAuthor(AuthorModelIU author);
     AuthorModelDTO existsAuthor(AuthorModelIU author);
-    AuthorModelDTO updateAuthor(AuthorModelIU author);
+    AuthorModelDTO updateAuthor(Integer id, String param, String val);
     AuthorModelDTO saveAuthor(AuthorModelIU author);
 }
