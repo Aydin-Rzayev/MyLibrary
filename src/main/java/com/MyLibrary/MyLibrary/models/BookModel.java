@@ -26,6 +26,6 @@ public class BookModel {
 
     @Column
     @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "author_id", nullable = false)
     private AuthorModel author;
 }

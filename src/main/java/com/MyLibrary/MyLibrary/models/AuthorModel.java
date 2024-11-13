@@ -2,6 +2,7 @@ package com.MyLibrary.MyLibrary.models;
 
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class AuthorModel {
     private String name;
 
     @Column
-    @OneToMany(mappedBy = "AuthorModel")
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<BookModel> books;
 
 }

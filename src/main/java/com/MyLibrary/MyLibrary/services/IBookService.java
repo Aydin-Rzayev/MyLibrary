@@ -9,8 +9,8 @@ public interface IBookService {
     BookModelDTO getBookById(Integer id);
     BookModelDTO getBookByName(String name);
     List<BookModelDTO> getAllBooks();
-    BookModelDTO deleteBook(BookModelIU book);
+    Boolean deleteBook(BookModelIU book);
     BookModelDTO existsBook(BookModelIU book);
-    BookModelDTO updateBook(BookModelIU book);
+    BookModelDTO updateBook(Integer id, String param, String val);
     BookModelDTO saveBook(BookModelIU book);
 }
