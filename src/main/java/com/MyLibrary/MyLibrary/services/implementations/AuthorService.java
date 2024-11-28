@@ -24,7 +24,7 @@ public class AuthorService implements IAuthorService{
         AuthorModel authorModel = new AuthorModel();
         BeanUtils.copyProperties(author, authorModel);
         AuthorModelDTO authorDto = new AuthorModelDTO();
-        if(authorRepository.findByNameAndId(authorModel.getName(), authorModel.getId()).isPresent()){
+        if(!authorRepository.findByNameAndId(authorModel.getName(), authorModel.getId()).isPresent()){
             BeanUtils.copyProperties(authorRepository.save(authorModel), authorDto);
             return authorDto;
         }
@@ -44,7 +44,7 @@ public class AuthorService implements IAuthorService{
         Optional<AuthorModelDTO> author = Optional.of(new AuthorModelDTO());
         while(authors.hasNext()){
             AuthorModel next = authors.next();
-            if(next.getName().equals(name)){
+            if(next.getName().equalsIgnoreCase(name)){
                 BeanUtils.copyProperties(next, author.get());
             }
         }
@@ -58,7 +58,7 @@ public class AuthorService implements IAuthorService{
         return author;
     }
 
-    public List<AuthorModelDTO> getAllAuthors(){
+    public Optional<List<AuthorModelDTO>> getAllAuthors(){
         List<AuthorModelDTO> authors = new ArrayList<>();
         Iterator<AuthorModel> authorModel = authorRepository.findAll().iterator();
         while(authorModel.hasNext()){
@@ -67,7 +67,7 @@ public class AuthorService implements IAuthorService{
             BeanUtils.copyProperties(auth, authDTO);
             authors.add(authDTO);
         }
-        return authors;
+        return Optional.of(authors);
     }
 
     public AuthorModelDTO updateAuthor(Integer id, String param, String val){
@@ -96,6 +96,7 @@ public class AuthorService implements IAuthorService{
         }
         return false;
     }
+
 
 }
 
